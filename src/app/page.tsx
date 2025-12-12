@@ -5,7 +5,7 @@ export default function Home() {
     <div className="fixed inset-0 w-screen h-screen bg-black">
       {/* Stationary text - pitch black and bold, behind GhostCursor */}
       <h1 className="absolute inset-0 flex items-center justify-center text-6xl font-bold text-black select-none pointer-events-none z-0">
-        Anurag, fuck you LOL
+        Hi anurag
       </h1>
 
       {/* Full screen GhostCursor - on top layer */}
