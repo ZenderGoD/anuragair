@@ -3,8 +3,8 @@ import GhostCursor from '@/components/GhostCursor';
 export default function Home() {
   return (
     <div className="fixed inset-0 w-screen h-screen bg-black">
-      {/* Hidden stationary text - pitch black when visible */}
-      <h1 className="absolute inset-0 flex items-center justify-center text-6xl font-bold text-transparent select-none pointer-events-none z-10">
+      {/* Stationary text - pitch black and bold */}
+      <h1 className="absolute inset-0 flex items-center justify-center text-6xl font-bold text-black select-none pointer-events-none z-10">
         Anurag, fuck you LOL
       </h1>
 
