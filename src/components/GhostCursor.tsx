@@ -471,6 +471,7 @@ const GhostCursor: React.FC<GhostCursorProps> = ({
         parent.style.position = prevParentPos;
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     trailLength,
     inertia,
@@ -482,7 +483,6 @@ const GhostCursor: React.FC<GhostCursorProps> = ({
     fadeDelay,
     fadeDuration,
     isTouch,
-    color,
     brightness,
     mixBlendMode,
     edgeIntensity,
@@ -491,6 +491,8 @@ const GhostCursor: React.FC<GhostCursorProps> = ({
     UnpremultiplyPass,
     baseVertexShader,
     fragmentShader
+    // Note: 'color' is intentionally excluded to prevent re-initialization on color changes.
+    // Color updates are handled by a separate useEffect below.
   ]);
 
   useEffect(() => {

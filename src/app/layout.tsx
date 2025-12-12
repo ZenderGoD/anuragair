@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Anurag, fuck you 😂",
-  description: "A website with GhostCursor effect",
+  title: "Anurag,my man 😂",
+  description: "A website for anurag",
 };
 
 export default function RootLayout({
