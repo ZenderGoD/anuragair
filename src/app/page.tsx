@@ -1,10 +1,21 @@
+'use client';
+
+import { useState } from 'react';
 import GhostCursor from '@/components/GhostCursor';
 
 export default function Home() {
+  const [isTextVisible, setIsTextVisible] = useState(false);
+
   return (
     <div className="fixed inset-0 w-screen h-screen bg-black">
-      {/* Visible text */}
-      <h1 className="absolute inset-0 flex items-center justify-center text-6xl font-bold text-white select-none pointer-events-none z-10">
+      {/* Text that appears on hover */}
+      <h1
+        className={`absolute inset-0 flex items-center justify-center text-6xl font-bold select-none z-10 transition-opacity duration-300 ${
+          isTextVisible ? 'text-white opacity-100' : 'text-transparent opacity-0'
+        }`}
+        onMouseEnter={() => setIsTextVisible(true)}
+        onMouseLeave={() => setIsTextVisible(false)}
+      >
         Anurag, fuck you LOL
       </h1>
 
