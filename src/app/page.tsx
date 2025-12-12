@@ -4,10 +4,13 @@ export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-black">
       <div className="text-center">
-        <h1 className="text-6xl font-bold text-white mb-8">
+        {/* Hidden text */}
+        <h1 className="text-6xl font-bold text-transparent select-none pointer-events-none">
           Anurag, fuck you 😂
         </h1>
-        <div style={{ height: 600, position: 'relative' }}>
+
+        {/* Large GhostCursor effect */}
+        <div style={{ height: 800, position: 'relative', width: '100vw', maxWidth: '1200px' }}>
           <GhostCursor
             // Visuals
             color="#B19EEF"
