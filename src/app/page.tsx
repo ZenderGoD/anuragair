@@ -3,14 +3,14 @@ import GhostCursor from '@/components/GhostCursor';
 export default function Home() {
   return (
     <div className="fixed inset-0 w-screen h-screen bg-black">
-      {/* Stationary text - pitch black and bold */}
-      <h1 className="absolute inset-0 flex items-center justify-center text-6xl font-bold text-black select-none pointer-events-none z-10">
+      {/* Stationary text - pitch black and bold, behind GhostCursor */}
+      <h1 className="absolute inset-0 flex items-center justify-center text-6xl font-bold text-black select-none pointer-events-none z-0">
         Anurag, fuck you LOL
       </h1>
 
-      {/* Full screen GhostCursor */}
+      {/* Full screen GhostCursor - on top layer */}
       <GhostCursor
-        style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}
+        style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 10 }}
         // Visuals
         color="#B19EEF"
         brightness={1}
