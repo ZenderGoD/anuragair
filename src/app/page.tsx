@@ -1,20 +1,30 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import GhostCursor from '@/components/GhostCursor';
 
 export default function Home() {
-  const [isTextVisible, setIsTextVisible] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
     <div className="fixed inset-0 w-screen h-screen bg-black">
-      {/* Text that appears on hover */}
+      {/* Text that follows mouse cursor */}
       <h1
-        className={`absolute inset-0 flex items-center justify-center text-6xl font-bold select-none z-10 transition-opacity duration-300 ${
-          isTextVisible ? 'text-white opacity-100' : 'text-transparent opacity-0'
-        }`}
-        onMouseEnter={() => setIsTextVisible(true)}
-        onMouseLeave={() => setIsTextVisible(false)}
+        className="absolute text-6xl font-bold select-none pointer-events-none z-10 text-[#1a0a1a] mix-blend-screen"
+        style={{
+          left: `${mousePosition.x}px`,
+          top: `${mousePosition.y}px`,
+          transform: 'translate(-50%, -50%)',
+        }}
       >
         Anurag, fuck you LOL
       </h1>
