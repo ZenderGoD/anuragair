@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="fixed inset-0 w-screen h-screen bg-black">
       {/* Stationary text - very dark gray, behind GhostCursor, revealed by light */}
-      <h1 className="absolute inset-0 flex items-center justify-center text-6xl font-bold select-none pointer-events-none z-0" style={{ color: '#1a1a1a', textShadow: '0 0 2px rgba(177, 158, 239, 0.1)' }}>
+      <h1 className="absolute inset-0 flex items-center justify-center text-6xl font-bold select-none pointer-events-none z-0" style={{ color: '#111111', textShadow: '0 0 2px rgba(177, 158, 239, 0.1)' }}>
         Hi anurag
       </h1>
 

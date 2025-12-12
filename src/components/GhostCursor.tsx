@@ -68,7 +68,7 @@ const GhostCursor: React.FC<GhostCursorProps> = ({
   const currentMouseRef = useRef(new THREE.Vector2(0.5, 0.5));
   const velocityRef = useRef(new THREE.Vector2(0, 0));
   const fadeOpacityRef = useRef(1.0);
-  const lastMoveTimeRef = useRef(typeof performance !== 'undefined' ? performance.now() : Date.now());
+  const lastMoveTimeRef = useRef(0);
   const pointerActiveRef = useRef(false);
   const runningRef = useRef(false);
 
@@ -318,7 +318,11 @@ const GhostCursor: React.FC<GhostCursorProps> = ({
     bloomPassRef.current = bloomPass;
     composer.addPass(bloomPass);
 
-    const filmPass = new ShaderPass(FilmGrainShader as any);
+    const filmPass = new ShaderPass(FilmGrainShader as {
+      uniforms: { tDiffuse: { value: null }; iTime: { value: number }; intensity: { value: number } };
+      vertexShader: string;
+      fragmentShader: string;
+    });
     filmPassRef.current = filmPass;
     composer.addPass(filmPass);
 
@@ -356,7 +360,9 @@ const GhostCursor: React.FC<GhostCursorProps> = ({
     ro.observe(parent);
     ro.observe(host);
 
-    const start = typeof performance !== 'undefined' ? performance.now() : Date.now();
+    // Initialize lastMoveTimeRef
+    lastMoveTimeRef.current = typeof performance !== 'undefined' ? performance.now() : Date.now();
+    const start = lastMoveTimeRef.current;
     const animate = () => {
       const now = performance.now();
       const t = (now - start) / 1000;
@@ -479,7 +485,12 @@ const GhostCursor: React.FC<GhostCursorProps> = ({
     color,
     brightness,
     mixBlendMode,
-    edgeIntensity
+    edgeIntensity,
+    maxDevicePixelRatio,
+    FilmGrainShader,
+    UnpremultiplyPass,
+    baseVertexShader,
+    fragmentShader
   ]);
 
   useEffect(() => {
@@ -508,12 +519,14 @@ const GhostCursor: React.FC<GhostCursorProps> = ({
   }, [grainIntensity]);
 
   useEffect(() => {
-    const el = rendererRef.current?.domElement;
-    if (!el) return;
-    if (mixBlendMode) {
-      el.style.mixBlendMode = String(mixBlendMode);
+    const renderer = rendererRef.current;
+    if (!renderer?.domElement) return;
+    const domElement = renderer.domElement;
+    const currentMixBlendMode = mixBlendMode;
+    if (currentMixBlendMode) {
+      domElement.style.mixBlendMode = String(currentMixBlendMode);
     } else {
-      el.style.removeProperty('mix-blend-mode');
+      domElement.style.removeProperty('mix-blend-mode');
     }
   }, [mixBlendMode]);
 
