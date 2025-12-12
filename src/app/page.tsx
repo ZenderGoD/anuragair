@@ -6,7 +6,7 @@ export default function Home() {
       <div className="text-center">
         {/* Hidden text */}
         <h1 className="text-6xl font-bold text-transparent select-none pointer-events-none">
-          Anurag, fuck you 😂
+          Anurag, fuck you LOL
         </h1>
 
         {/* Large GhostCursor effect */}
