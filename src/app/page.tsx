@@ -33,8 +33,9 @@ export default function Home() {
   return (
     <div className="fixed inset-0 w-screen h-screen bg-black">
       {/* Stationary text - very dark gray, behind GhostCursor, revealed by light */}
-      <h1 className="absolute inset-0 flex items-center justify-center text-6xl font-bold select-none pointer-events-none z-0" style={{ color: '#000000' }}>
-        Hi anurag
+      <h1 className="absolute inset-0 flex flex-col items-center justify-center text-6xl font-bold select-none pointer-events-none z-0 text-center" style={{ color: '#000000' }}>
+        <div>Congratulations Anurag</div>
+        <div className="mt-4">Fly High</div>
       </h1>
 
       {/* Full screen GhostCursor - on top layer */}
